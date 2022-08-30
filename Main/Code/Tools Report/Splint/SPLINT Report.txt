@@ -1,0 +1,161 @@
+Splint 3.1.2 --- 21 Feb 2021
+
+function.c:5: Include file <termios.h> matches the name of a POSIX library, but
+    the POSIX library is not being used.  Consider using +posixlib or
+    +posixstrictlib to select the POSIX library, or -warnposix to suppress this
+    message.
+  Header name matches a POSIX header, but the POSIX library is not selected.
+  (Use -warnposixheaders to inhibit warning)
+< Location unknown >: Field name reused:
+  Code cannot be parsed.  For help on parse errors, see splint -help
+  parseerrors. (Use -syntax to inhibit warning)
+< Location unknown >: Previous use of
+function.c: (in function customer_to_list)
+function.c:12:35: Variable ptr shadows outer declaration
+  An outer declaration is shadowed by the local declaration. (Use -shadow to
+  inhibit warning)
+   func.h:37:23: Previous definition of ptr: cst *
+function.c:20:8: Possibly null storage new_cust passed as non-null param:
+                    fread (new_cust, ...)
+  A possibly null pointer is passed as a parameter corresponding to a formal
+  parameter with no /*@null@*/ annotation.  If NULL may be used for this
+  parameter, add a /*@null@*/ annotation to the function parameter declaration.
+  (Use -nullpass to inhibit warning)
+   function.c:19:11: Storage new_cust may become null
+function.c:20:2: Return value (type size_t) ignored: fread(new_cust, ...
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalother to inhibit warning)
+function.c:21:9: Operand of ! is non-boolean (int): !feof(fp)
+  The operand of a boolean operator is not a boolean. Use +ptrnegate to allow !
+  to be used on pointers. (Use -boolops to inhibit warning)
+function.c:30:8: Arrow access from null pointer last: last->next
+  A possibly null pointer is dereferenced.  Value is either the result of a
+  function which may return null (in which case, code should check it is not
+  null), or a global, parameter or structure field declared with the null
+  qualifier. (Use -nullderef to inhibit warning)
+   function.c:13:9: Storage last becomes null
+function.c:30:4: Implicitly only storage last->next (type struct customer *)
+                    not released before assignment: last->next = new_cust
+  A memory leak has been detected. Only-qualified storage is not released
+  before the last reference to it is lost. (Use -mustfreeonly to inhibit
+  warning)
+function.c:35:9: Possibly null storage new_cust passed as non-null param:
+                    fread (new_cust, ...)
+   function.c:34:12: Storage new_cust may become null
+function.c:35:3: Return value (type size_t) ignored: fread(new_cust, ...
+function.c:37:2: Path with no return in function declared to return int
+  There is a path through a function declared to return a value on which there
+  is no return statement. This means the execution may fall through without
+  returning a meaningful result to the caller. (Use -noret to inhibit warning)
+function.c:37:2: Fresh storage new_cust not released before return
+  A memory leak has been detected. Storage allocated locally is not released
+  before the last reference to it is lost. (Use -mustfreefresh to inhibit
+  warning)
+   function.c:19:2: Fresh storage new_cust created
+function.c: (in function list_to_customer)
+function.c:40:19: Variable ptr shadows outer declaration
+   func.h:37:23: Previous definition of ptr: cst *
+function.c:49:40: Possibly null storage fp passed as non-null param:
+                     fwrite (..., fp)
+   function.c:46:5: Storage fp may become null
+function.c:49:3: Return value (type size_t) ignored: fwrite(ptr, size...
+function.c:51:9: Possibly null storage fp passed as non-null param: fclose (fp)
+   function.c:46:5: Storage fp may become null
+function.c:51:2: Return value (type int) ignored: fclose(fp)
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalint to inhibit warning)
+function.c:52:2: Path with no return in function declared to return int
+function.c: (in function stock_to_list)
+function.c:56:32: Variable ptr1 shadows outer declaration
+   func.h:38:25: Previous definition of ptr1: stok *
+function.c:63:8: Possibly null storage new_stk passed as non-null param:
+                    fread (new_stk, ...)
+   function.c:62:10: Storage new_stk may become null
+function.c:63:2: Return value (type size_t) ignored: fread(new_stk, s...
+function.c:64:9: Operand of ! is non-boolean (int): !feof(fp1)
+function.c:73:4: Variable last1 used before definition
+  An rvalue is used that may not be initialized to a value on some execution
+  path. (Use -usedef to inhibit warning)
+function.c:73:4: Implicitly only storage last1->next (type struct stock *) not
+                    released before assignment: last1->next = new_stk
+function.c:78:9: Possibly null storage new_stk passed as non-null param:
+                    fread (new_stk, ...)
+   function.c:77:11: Storage new_stk may become null
+function.c:78:3: Return value (type size_t) ignored: fread(new_stk, s...
+function.c:80:2: Path with no return in function declared to return int
+function.c:80:2: Fresh storage new_stk not released before return
+   function.c:62:2: Fresh storage new_stk created
+function.c:56:32: Variable ptr1 declared but not used
+  A variable is declared but never used. Use /*@unused@*/ in front of
+  declaration to suppress message. (Use -varuse to inhibit warning)
+function.c: (in function list_to_stock)
+function.c:83:16: Variable ptr1 shadows outer declaration
+   func.h:38:25: Previous definition of ptr1: stok *
+function.c:92:38: Possibly null storage fp1 passed as non-null param:
+                     fwrite (..., fp1)
+   function.c:89:6: Storage fp1 may become null
+function.c:92:3: Return value (type size_t) ignored: fwrite(ptr1, siz...
+function.c:94:9: Possibly null storage fp1 passed as non-null param:
+                    fclose (fp1)
+   function.c:89:6: Storage fp1 may become null
+function.c:94:2: Return value (type int) ignored: fclose(fp1)
+function.c:95:2: Path with no return in function declared to return int
+function.c: (in function report)
+function.c:98:5: Return value (type int) ignored: pthread_mutex_lo...
+function.c:101:5: Unrecognized identifier: gp
+  Identifier used in code has not been declared. (Use -unrecog to inhibit
+  warning)
+function.c:104:15: Passed storage pass not completely defined (*pass is
+                      undefined): strcmp (pass, ...)
+  Storage derivable from a parameter, return value or global is not defined.
+  Use /*@out@*/ to denote passed or returned storage which need not be defined.
+  (Use -compdef to inhibit warning)
+function.c:104:8: Test expression for if not boolean, type int:
+                     strcmp(pass, "gs3osp")
+  Test expression type is not boolean or int. (Use -predboolint to inhibit
+  warning)
+function.c:111:11: Variable ch used before definition
+function.c:113:9: Return value (type int) ignored: scanf("%d", &ch)
+function.c:117:13: Return value (type int) ignored: view_stock()
+function.c:120:13: Return value (type int) ignored: view_customer()
+function.c:129:5: Return value (type int) ignored: pthread_mutex_un...
+function.c:130:2: Path with no return in function declared to return int
+function.c: (in function modify_stock_after_purchase)
+function.c:133:5: Return value (type int) ignored: pthread_mutex_lo...
+function.c:134:11: Variable new shadows outer declaration
+   func.h:37:12: Previous definition of new: cst *
+function.c:134:16: Variable prev shadows outer declaration
+   func.h:37:17: Previous definition of prev: cst *
+function.c:134:22: Variable ptr shadows outer declaration
+   func.h:37:23: Previous definition of ptr: cst *
+function.c:140:14: Left operand of && is non-boolean (stok *):
+                      (ptr) && ptr->product_id != pid
+function.c:148:5: Return value (type int) ignored: pthread_mutex_un...
+function.c:149:2: Path with no return in function declared to return int
+function.c:134:11: Variable new declared but not used
+function.c:134:16: Variable prev declared but not used
+function.c: (in function shop_here)
+function.c:152:5: Return value (type int) ignored: pthread_mutex_lo...
+function.c:155:5: Return value (type int) ignored: scanf("%d", &id)
+function.c:156:10: Variable new shadows outer declaration
+   func.h:37:12: Previous definition of new: cst *
+function.c:156:15: Variable prev shadows outer declaration
+   func.h:37:17: Previous definition of prev: cst *
+function.c:156:21: Variable ptr shadows outer declaration
+   func.h:37:23: Previous definition of ptr: cst *
+function.c:162:15: Left operand of && is non-boolean (cst *):
+                      (ptr) && ptr->id != id
+function.c:169:5: Return value (type int) ignored: getchar()
+function.c:173:27: Passed storage password not completely defined (*password is
+                      undefined): strcmp (..., password)
+function.c:173:6: Operand of ! is non-boolean (int):
+                     !strcmp(ptr->password, password)
+function.c:179:9: No argument corresponding to printf format code 1 (% c):
+    "\n                    Congratulations ! You are eligible for 5% cashback
+    on Purchase above Rs.200.\n                    Points will be deducted as
+    cash from the Total bill\n\n\n"
+  Types are incompatible. (Use -type to inhibit warning)
+   function.c:179:81: Corresponding format code
+function.c:181:9: Parse Error. (For help on parse errors, see splint -help
+             parseerrors.)
+*** Cannot continue.
