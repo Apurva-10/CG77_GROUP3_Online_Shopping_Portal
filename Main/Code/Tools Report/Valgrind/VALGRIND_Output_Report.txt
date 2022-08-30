@@ -1,0 +1,22 @@
+==257679== Memcheck, a memory error detector
+==257679== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==257679== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==257679== Command: ./a.out
+==257679==
+^C==257679==
+==257679== Process terminating with default action of signal 2 (SIGINT)
+==257679==    at 0x493AE8E: read (read.c:26)
+==257679==    by 0x48CD899: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:517)
+==257679==    by 0x48CEB01: _IO_default_uflow (genops.c:362)
+==257679==    by 0x48A5137: __vfscanf_internal (vfscanf-internal.c:627)
+==257679==    by 0x48A418D: __isoc99_scanf (isoc99_scanf.c:30)
+==257679==    by 0x10B045: main (in /home/cguser18/project/Project_Online_Shopping_Portal/Main/a.out)
+==257679==
+==257679== HEAP SUMMARY:
+==257679==     in use at exit: 0 bytes in 0 blocks
+==257679==   total heap usage: 4 allocs, 4 frees, 6,064 bytes allocated
+==257679==
+==257679== All heap blocks were freed -- no leaks are possible
+==257679==
+==257679== For lists of detected and suppressed errors, rerun with: -s
+==257679== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
