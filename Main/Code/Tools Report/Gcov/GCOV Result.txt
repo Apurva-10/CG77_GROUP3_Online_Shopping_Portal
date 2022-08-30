@@ -1,0 +1,83 @@
+-:    0:Source:gcovtest.c
+        -:    0:Graph:gcovtest.gcno
+        -:    0:Data:gcovtest.gcda
+        -:    0:Runs:2
+        -:    1:#include <stdio.h>
+        -:    2:#include<pthread.h>
+        -:    3:#include <string.h>
+        -:    4:#include <time.h>
+        -:    5:#include "func.h"
+        -:    6:#include "function.c"
+        -:    7://pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+function main called 2 returned 100% blocks executed 79%
+        2:    8:int main()
+        -:    9:{
+        -:   10:        pthread_t thread_id;
+        2:   11:        cust=NULL;
+        2:   12:        stk=NULL;
+        2:   13:        int ch=0;
+        2:   14:        customer_to_list();
+call    0 returned 2
+        2:   15:        stock_to_list();
+call    0 returned 2
+        8:   16:        while(ch != 6){
+branch  0 taken 6
+branch  1 taken 2 (fallthrough)
+        6:   17:        printf("ABC online - an online shopping portal for groceries\n********************************************\n");
+call    0 returned 6
+        6:   18:        printf("1. Customer Registration\n2. Shop Here\n3. View Stock details\n4. File maintainance\n5. Report\n6. Exit\n");
+call    0 returned 6
+        6:   19:        printf("Enter a valid choice\n");
+call    0 returned 6
+        6:   20:        scanf("%d",&ch);
+call    0 returned 6
+        6:   21:        switch(ch)
+branch  0 taken 1
+branch  1 taken 2
+branch  2 taken 0
+branch  3 taken 0
+branch  4 taken 1
+branch  5 taken 2
+branch  6 taken 0
+        -:   22:        {
+        1:   23:            case 1 :
+        1:   24:                customer_registration();
+call    0 returned 1
+        1:   25:                break;
+        2:   26:            case 2 :
+        2:   27:                shop_here();
+call    0 returned 2
+        2:   28:                break;
+    #####:   29:            case 3 :
+    #####:   30:                view_stock();
+call    0 never executed
+    #####:   31:                break;
+    #####:   32:            case 4 :
+    #####:   33:                file_maintainance();
+call    0 never executed
+    #####:   34:                break;
+        1:   35:            case 5 :
+        1:   36:                report();
+call    0 returned 1
+        1:   37:                break;
+        2:   38:            case 6 :
+        2:   39:                break;
+    #####:   40:            default:
+    #####:   41:                printf("\nInvalid choice. Please enter a valid choice\n");
+call    0 never executed
+        -:   42:        }
+        -:   43:        }
+        2:   44:        if(cust!=NULL)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        1:   45:    list_to_customer();
+call    0 returned 1
+        2:   46:    if(stk!=NULL)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+    #####:   47:    list_to_stock();
+call    0 never executed
+        2:   48:    pthread_mutex_destroy(&lock);
+call    0 returned 2
+        2:   49:    return 1;;
+        -:   50:}
