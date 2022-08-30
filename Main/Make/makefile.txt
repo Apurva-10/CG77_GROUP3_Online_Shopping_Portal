@@ -1,0 +1,9 @@
+OBJS = main.o
+OBJS1 = main.c
+HEAD = func.h
+CC = gcc
+RM = *.o
+test: $(OBJS)
+        $(CC) -o test $(OBJS1)
+clean:
+         rm $(RM) 
